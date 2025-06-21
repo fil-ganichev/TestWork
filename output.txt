@@ -1,0 +1,27 @@
+*** TEST1
+init package ClassB
+using default rate = not defined
+init package ClassA
+using calculator: calc v1.0
+init default rate to value: 0.1
+do calc interest for amount=2000.0; tariff=DEF; rate=0.1; p_comm_amt=100.0
+interest = 100.0
+
+*** TEST2
+change default rate from 0.1 to 0.5
+do calc interest for amount=1000.0; tariff=TARIFF1; rate=0.5; p_comm_amt=10.0
+interest = 490.0
+
+*** TEST3
+change default rate from 0.5 to 0.6
+do calc interest for amount=1000.0; tariff=DEF; rate=0.6; p_comm_amt=
+interest = 600.0
+
+*** TEST4
+do calc interest for amount=1000.0; tariff=DEF; rate=0.3; p_comm_amt=
+interest = 300.0
+
+*** TEST5
+special rate requested
+do calc interest for amount=1000.0; tariff=DEF; rate=0.2; p_comm_amt=
+interest = 200.0
