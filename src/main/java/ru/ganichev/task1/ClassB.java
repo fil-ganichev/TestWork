@@ -2,44 +2,39 @@ package ru.ganichev.task1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import ru.ganichev.task1.exception.DefaultRateNotInitializedException;
 
-import javax.annotation.PostConstruct;
+import static ru.ganichev.task1.Constants.NOT_DEFINED_RATE;
+import static ru.ganichev.task1.Constants.NOT_DEFINED_RATE_STR;
 
-import static ru.ganichev.task1.DefaultRateHolder.NOT_DEFINED;
-import static ru.ganichev.task1.DefaultRateHolder.NOT_DEFINED_STR;
-
-@Component
 public class ClassB implements ClassBInterface {
-
-    private static final String CALCULATOR_VERSION = "calc v1.0";
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final DefaultRateHolder defaultRateHolder;
 
-    public ClassB(DefaultRateHolder defaultRateHolder) {
-        this.defaultRateHolder = defaultRateHolder;
+    private final SessionHolder sessionHolder;
+
+    public ClassB(SessionHolder sessionHolder) {
+        this.sessionHolder = sessionHolder;
     }
 
-    @PostConstruct
-    void init() {
+    @Override
+    public void postInit() {
         log.info("init package ClassB");
-        double defaultRate = defaultRateHolder.getDefaultRate();
-        if (defaultRate != DefaultRateHolder.NOT_DEFINED) {
+        double defaultRate = sessionHolder.getClassAInterface().getDefaultRate();
+        if (defaultRate != NOT_DEFINED_RATE) {
             log.info("using default rate = {}", defaultRate);
         } else {
-            log.info("using default rate = {}", NOT_DEFINED_STR);
+            log.info("using default rate = {}", NOT_DEFINED_RATE_STR);
         }
     }
 
     @Override
     public void calculateInterest(double amount, double[] interest) {
-        calculateInterest(amount, interest, "DEF", defaultRateHolder.getDefaultRate(), null);
+        calculateInterest(amount, interest, "DEF", sessionHolder.getClassAInterface().getDefaultRate(), null);
     }
 
     @Override
     public void calculateInterest(double amount, double[] interest, String tariff) {
-        calculateInterest(amount, interest, tariff, defaultRateHolder.getDefaultRate(), null);
+        calculateInterest(amount, interest, tariff, sessionHolder.getClassAInterface().getDefaultRate(), null);
     }
 
     @Override
@@ -59,8 +54,8 @@ public class ClassB implements ClassBInterface {
 
     @Override
     public void calculateInterest(double amount, double[] interest, String tariff, Double rate, Double commAmt) {
-        double calculatedRate = (rate != null) ? rate : defaultRateHolder.getDefaultRate();
-        if(calculatedRate==NOT_DEFINED)  {
+        double calculatedRate = (rate != null) ? rate : sessionHolder.getClassAInterface().getDefaultRate();
+        if (calculatedRate == NOT_DEFINED_RATE) {
             throw new DefaultRateNotInitializedException();
         }
         double commission = (commAmt != null) ? commAmt : 0.0;
@@ -69,10 +64,5 @@ public class ClassB implements ClassBInterface {
                 "; tariff=" + tariff +
                 "; rate=" + calculatedRate +
                 "; p_comm_amt=" + (commAmt == null ? "" : commAmt));
-    }
-
-    @Override
-    public String getCalculatorVersion() {
-        return CALCULATOR_VERSION;
     }
 }

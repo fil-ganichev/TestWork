@@ -1,7 +1,7 @@
 *** TEST1
+init package ClassA
 init package ClassB
 using default rate = not defined
-init package ClassA
 using calculator: calc v1.0
 init default rate to value: 0.1
 do calc interest for amount=2000.0; tariff=DEF; rate=0.1; p_comm_amt=100.0

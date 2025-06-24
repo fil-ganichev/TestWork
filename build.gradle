@@ -12,11 +12,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.ignite:ignite-core:2.7.6'
+    implementation 'org.apache.ignite:ignite-core:2.13.0'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
-    implementation 'org.springframework.boot:spring-boot-starter'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.assertj:assertj-core:3.27.3'
 }
 
 test {
