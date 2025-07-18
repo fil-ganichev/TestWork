@@ -1,6 +1,4 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.18'
-    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
 }
 
@@ -14,11 +12,14 @@ repositories {
 dependencies {
     implementation 'org.apache.ignite:ignite-core:2.13.0'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+    //implementation("com.h2database:h2:1.4.200")
+    implementation("com.h2database:h2:2.2.224")
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     testImplementation 'org.assertj:assertj-core:3.27.3'
 }
+
 
 test {
     useJUnitPlatform()
