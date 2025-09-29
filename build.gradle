@@ -11,9 +11,14 @@ repositories {
 
 dependencies {
     implementation 'org.apache.ignite:ignite-core:2.13.0'
+    implementation 'org.apache.ignite:ignite-indexing:2.13.0'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
     //implementation("com.h2database:h2:1.4.200")
-    implementation("com.h2database:h2:2.2.224")
+    //implementation("com.h2database:h2:2.2.224")
+    implementation("com.h2database:h2:1.4.197")
+
+    //stringtemplate
+    implementation 'org.antlr:ST4:4.3.4'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'

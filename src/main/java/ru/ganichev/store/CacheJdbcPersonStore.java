@@ -90,7 +90,7 @@ public class CacheJdbcPersonStore extends CacheStoreAdapter<Long, Person> {
                     "update PERSON set first_name = ?, last_name = ? where id = ?")) {
                 st.setString(1, val.firstName);
                 st.setString(2, val.lastName);
-                st.setLong(3, val.id);
+                st.setLong(3, key);
 
                 updated = st.executeUpdate();
             }
@@ -99,7 +99,7 @@ public class CacheJdbcPersonStore extends CacheStoreAdapter<Long, Person> {
             if (updated == 0) {
                 try (PreparedStatement st = conn.prepareStatement(
                         "insert into PERSON (id, first_name, last_name) values (?, ?, ?)")) {
-                    st.setLong(1, val.id);
+                    st.setLong(1, key);
                     st.setString(2, val.firstName);
                     st.setString(3, val.lastName);
 

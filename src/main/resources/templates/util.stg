@@ -1,0 +1,8 @@
+list(element, suffix="") ::=
+<<
+<element:{it|
+<it><suffix>}>
+>>
+
+separated(element, separator=" ") ::=
+"<element; separator=separator><if(element)><separator><endif>"

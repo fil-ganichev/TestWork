@@ -1,0 +1,7 @@
+import "util.stg"
+
+elseIfPartTemplate(expressionElement, statementElement) ::= <<
+else if(<expressionElement>) {
+<list(statementElement)>
+}
+>>

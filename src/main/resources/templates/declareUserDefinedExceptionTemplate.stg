@@ -1,0 +1,9 @@
+import "variableDeclaration.stg"
+
+declareUserDefinedExceptionTemplate(exceptionVariableName, errorCode, modifier= "private static") ::= <<
+ <if(errorCode)>
+ <variableDeclarationTemplate(modifier, exceptionVariableName, ["new UserDefinedException(", errorCode, ")"], "UserDefinedException")>
+ <else>
+ <variableDeclarationTemplate(modifier, exceptionVariableName, "new UserDefinedException()", "UserDefinedException")>
+ <endif>
+>>

@@ -1,0 +1,3 @@
+throwTemplate(exceptionVariableName) ::= <<
+throw new ApplicationException(<exceptionVariableName>);
+>>

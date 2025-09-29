@@ -1,0 +1,18 @@
+import "util.stg"
+
+tryBlockTemplate(mainStatementElement, catchStatementElement, ifElement) ::= <<
+try {
+    <list(mainStatementElement)>
+} catch(Exception e) {
+    try(var err = createErrorContext(e)) {
+
+        <if(catchStatementElement)>
+        <list(catchStatementElement)>
+        <endif>
+
+        <if(ifElement)>
+        <ifElement>
+        <endif>
+    }
+}
+>>

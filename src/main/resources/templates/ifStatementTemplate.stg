@@ -1,0 +1,9 @@
+import "util.stg"
+
+ifStatementTemplate(expressionElement, statementElement, elseIfPartElement, elsePartElement) ::= <<
+if(<expressionElement>) {
+<list(statementElement)>
+}
+<list(elseIfPartElement)>
+<elsePartElement>
+>>

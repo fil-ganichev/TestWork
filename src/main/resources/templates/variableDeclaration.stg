@@ -1,0 +1,6 @@
+import "util.stg"
+
+variableDeclarationTemplate(modifier, name, defaultElement, type = "var") ::=
+<<
+<separated(modifier)><type> <name><if(defaultElement)> = <defaultElement><endif>;
+>>

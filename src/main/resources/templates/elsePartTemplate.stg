@@ -1,0 +1,7 @@
+import "util.stg"
+
+elsePartTemplate(statementElement) ::= <<
+else  {
+<list(statementElement)>
+}
+>>
